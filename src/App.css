@@ -1,0 +1,44 @@
+@charset "utf-8";
+
+*{
+    --color-pallete1: #1E212B;
+    --color-pallete2: #1098F7;
+    --color-pallete3: #C41E3D;
+    --color-pallete4: #B89E97;
+    --color-pallete5: #DECCCC;
+    color: var(--color-pallete1);
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--color-pallete5);
+    
+}
+
+span#sub{
+    padding: 10px;
+    background-color: var(--color-pallete2);
+    cursor: pointer;
+}
+
+div#app{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 500px;
+    margin: auto;
+    margin-top: 20px;
+}
+div#app > ul#out{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-left: 0;
+    padding: 0 15px;
+}
+div#app > form {
+    margin: auto;
+    display: flex;
+}
