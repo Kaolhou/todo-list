@@ -1,8 +1,15 @@
 import './App.css'
 import NoteContainer from './components/NoteContainer/index'
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 function App() {
+  //event listener on enter pressed
+  useEffect(()=>{
+    document.getElementById('inpt').addEventListener('keypress',(e)=>{
+      if(e.key==='Enter'){document.getElementById("sub").click()} 
+    })
+  },[])
+  //get data from localstorage or create an empty data
   const [notes, setNotes] = useState(JSON.parse(localStorage.getItem('todo')) || [
     {
       createdOn: new Date(),
@@ -10,6 +17,7 @@ function App() {
       value: "hello hello"
     }
   ])
+  //state from notes state, that refresh the data
   const [elements, setElements] = useState(notes.map((item, key)=>(
     <NoteContainer
       key={key}
@@ -18,7 +26,7 @@ function App() {
       onDelete={()=>{onDelete(key)}}
     />
   )))
-
+  //add a note
   const addNote = function(){
     const inpt = document.getElementById('inpt')
     if(inpt.value === '') return alert('você deve inserir valores dentro da caixa de texto')
@@ -35,8 +43,9 @@ function App() {
         onDelete={()=>{onDelete(key)}}
       />
     )))
+    inpt.value="";
   }
-  
+  //delete a note
   const onDelete = function(key){
     const allNotes = notes
     allNotes.splice(key,1)
@@ -51,15 +60,14 @@ function App() {
       />
     )))
   }
-
+  //jsx return
   return (
     <div id="app">
-      
       {/*input area*/}
-      <form>
+      <div id="form">
         <input type="text" id="inpt" />
         <span id='sub' onClick={addNote}>Adicionar</span>
-      </form>
+      </div>
 
       {/*output area*/}
       <ul id="out">{elements}</ul>
