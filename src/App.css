@@ -26,10 +26,11 @@ span#sub{
 div#app{
     display: flex;
     flex-wrap: wrap;
-    max-width: 500px;
+    max-width: 1200px;
     margin: auto;
     margin-top: 20px;
 }
+
 div#app > ul#out{
     width: 100%;
     display: flex;
@@ -38,6 +39,7 @@ div#app > ul#out{
     padding-left: 0;
     padding: 0 15px;
 }
+
 div#app > form {
     margin: auto;
     display: flex;

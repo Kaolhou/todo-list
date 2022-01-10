@@ -1,6 +1,6 @@
 import './App.css'
 import NoteContainer from './components/NoteContainer/index'
-import {/*useEffect, */useState} from 'react';
+import {useState} from 'react';
 
 function App() {
   const [notes, setNotes] = useState(JSON.parse(localStorage.getItem('todo')) || [
@@ -10,6 +10,14 @@ function App() {
       value: "hello hello"
     }
   ])
+  const [elements, setElements] = useState(notes.map((item, key)=>(
+    <NoteContainer
+      key={key}
+      note={item}
+      id={key}
+      onDelete={()=>{onDelete(key)}}
+    />
+  )))
 
   const addNote = function(){
     const inpt = document.getElementById('inpt')
@@ -19,29 +27,34 @@ function App() {
     allNotes.push(thisNote)
     setNotes(allNotes)
     localStorage.setItem('todo', JSON.stringify(allNotes))
-  }
-  
-  const onDelete = function(key){
-    const allNotes = notes
-    allNotes.splice(key,1)
-    setNotes(allNotes)
-    window.refresh()
-  }
-
-  const notesConteiner = function() {
-    return notes.map((item, key)=>(
+    setElements(notes.map((item, key)=>(
       <NoteContainer
         key={key}
         note={item}
         id={key}
         onDelete={()=>{onDelete(key)}}
       />
-    ))
+    )))
+  }
+  
+  const onDelete = function(key){
+    const allNotes = notes
+    allNotes.splice(key,1)
+    setNotes(allNotes)
+    localStorage.setItem('todo', JSON.stringify(allNotes))
+    setElements(notes.map((item, key)=>(
+      <NoteContainer
+        key={key}
+        note={item}
+        id={key}
+        onDelete={()=>{onDelete(key)}}
+      />
+    )))
   }
 
-  console.log(notes)
   return (
     <div id="app">
+      
       {/*input area*/}
       <form>
         <input type="text" id="inpt" />
@@ -49,9 +62,7 @@ function App() {
       </form>
 
       {/*output area*/}
-      <ul id="out">
-        {notesConteiner()}
-      </ul>
+      <ul id="out">{elements}</ul>
     </div>
   );
 }

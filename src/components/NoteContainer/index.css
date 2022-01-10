@@ -1,7 +1,16 @@
 li{
     list-style: none;
-    max-width: 246px;
+    max-width: 400px;
     margin: 2px;
     background-color: #b89e97cb;
-    min-width: 196px;
+    min-width: 300px;
+}
+li > #header{
+
+}
+li > #content{
+    overflow-x: scroll;
+}
+li > #header > span{
+    right:0
 }

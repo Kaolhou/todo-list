@@ -17,9 +17,13 @@ function NoteContainer({note, id, onDelete}){
         <li>
             <div id="header">
                 {`${date}/${month}/${year}`}
+                <span onClick={()=> onDelete(id)}>delete</span>
             </div>
             <div id="content">
                 {note.value}
+            </div>
+            <div>
+                
             </div>
         </li>
     )
