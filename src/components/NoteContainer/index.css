@@ -1,16 +1,48 @@
 li{
     list-style: none;
-    max-width: 400px;
+    width: 300px;
     margin: 2px;
     background-color: #b89e97cb;
-    min-width: 300px;
+    border-radius: 15px;
+    overflow: hidden;
 }
 li > #header{
-
+    display: flex;
+    justify-content:left;
+    background-color: var(--color-pallete4);
+    font-weight: bold;
+}
+#header *{
+    padding: 5px;
 }
 li > #content{
-    overflow-x: scroll;
+    min-height: 45px;
+    display: flex;
+    justify-content:space-between;
+    padding: 5px;
+}
+li > #content > #value{
+    white-space: pre-wrap;
+    content: '\a';
 }
 li > #header > span{
     right:0
+}
+span#value{
+    overflow-x: auto;
+}
+div#delete{
+    background-color: var(--color-pallete3);
+    padding: 10px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

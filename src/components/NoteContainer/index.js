@@ -1,29 +1,32 @@
 import './index.css'
+import trash from '../../assets/trash.svg'
 
 function NoteContainer({note, id, onDelete}){
     const createdOn = new Date(note.createdOn)
-    let date = createdOn.getDate()
-    let month = createdOn.getMonth() + 1
+    var date = createdOn.getDate()
+    var month = createdOn.getMonth() + 1
     const year = createdOn.getFullYear()
-
+    var hour = createdOn.getHours()
+    var min = createdOn.getMinutes()
     if (date < 10) {
         date = `0${date}`
-      }
-      if (month < 10) {
+    }
+    if (month < 10) {
         month = `0${month}`
-      }
+    }
+    let z= min.toString()
+    if(z.length === 1){
+        min = `0${min}`
+    }
 
     return(
         <li>
             <div id="header">
-                {`${date}/${month}/${year}`}
-                <span onClick={()=> onDelete(id)}>delete</span>
+                <div id="day">{`${date}/${month}/${year}`}</div>
+                <div id="hour">{`${hour}:${min}`}</div>
             </div>
             <div id="content">
-                {note.value}
-            </div>
-            <div>
-                
+                <span id="value">{note.value}</span><div id='delete' onClick={()=> onDelete(id)}><img src={trash} alt='trash' /></div>
             </div>
         </li>
     )
